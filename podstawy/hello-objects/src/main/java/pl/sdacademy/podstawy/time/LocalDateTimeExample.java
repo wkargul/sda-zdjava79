@@ -15,5 +15,14 @@ public class LocalDateTimeExample {
 
         newYearsEve = LocalDateTime.parse("2020-12-31T23:59:30");
         System.out.println(newYearsEve);
+
+        System.out.println(currentTime.isAfter(newYearsEve));
+
+        LocalDateTime newYear = newYearsEve.plusDays(1);
+        System.out.println("Niezmieniona: " + newYearsEve);
+        System.out.println("Nowa wartość: " + newYear);
+
+        System.out.println(LocalDateTime.MIN);
+        System.out.println(LocalDateTime.MAX);
     }
 }
