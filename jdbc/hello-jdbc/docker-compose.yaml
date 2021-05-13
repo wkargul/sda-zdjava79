@@ -7,7 +7,7 @@ services:
     build:
       context: db
 
-    # zmienne środowiskowe, oryginalny obraz postgresa używa ich do konfiguracji środowiska
+    # zmienne środowiskowe, oryginalny obraz mysql używa ich do konfiguracji środowiska
     environment:
       MYSQL_ROOT_PASSWORD: example
 
