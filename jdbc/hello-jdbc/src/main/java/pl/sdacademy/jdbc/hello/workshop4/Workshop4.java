@@ -17,6 +17,26 @@ public class Workshop4 {
     }
 
     private static void addCities(List<City> cities) throws SQLException {
-        throw new UnsupportedOperationException("TODO");
+        try (final Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:6306/world", "root", "example")) {
+            connection.setAutoCommit(false);
+            try (final PreparedStatement statement = connection.prepareStatement(
+                    "insert into city(name, countrycode, district, population) values (?,?,?,?);"
+            )) {
+                for (City city : cities) {
+                    statement.setString(1, city.getName());
+                    statement.setString(2, city.getCountryCode());
+                    statement.setString(3, city.getDistrict());
+                    statement.setInt(4, city.getPopulation());
+                    statement.addBatch();
+                }
+
+                statement.executeBatch();
+                connection.commit();
+            }
+            catch (SQLException sqlException) {
+                connection.rollback();
+                throw sqlException;
+            }
+        }
     }
 }
