@@ -1,6 +1,12 @@
 package pl.sdacademy.hibernate.sakila.workshop8;
 
+import pl.sdacademy.hibernate.sakila.workhop6.Film;
 import pl.sdacademy.hibernate.sakila.workhop6.Staff;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +29,18 @@ public class Workshop8a {
     }
 
     public static List<Staff> findAllStaff() {
-        throw new UnsupportedOperationException("TODO");
+        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("SakilaPU");
+        final EntityManager em = emf.createEntityManager();
+        try {
+            final TypedQuery<Staff> staffQuery = em.createQuery(
+                    "SELECT s FROM Staff s " +
+                            "JOIN FETCH s.address a " +
+                            "JOIN FETCH a.city c " +
+                            "JOIN FETCH c.country", Staff.class);
+            return staffQuery.getResultList();
+        }
+        finally {
+            emf.close();
+        }
     }
 }
