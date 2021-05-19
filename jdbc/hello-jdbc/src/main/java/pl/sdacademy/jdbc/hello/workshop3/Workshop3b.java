@@ -25,6 +25,32 @@ public class Workshop3b {
     }
 
     private static boolean addCity(City city) throws SQLException {
-        throw new UnsupportedOperationException("TODO");
+        final boolean exists;
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:6306/world", "root", "example")) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT EXISTS (SELECT * FROM city WHERE name=? AND countryCode = ?);")) {
+
+                preparedStatement.setString(1, city.getName());
+                preparedStatement.setString(2, city.getCountryCode());
+                ResultSet resultSet = preparedStatement.executeQuery();
+                resultSet.next();
+                exists = resultSet.getBoolean(1);
+            }
+
+            if(exists) {
+                try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE city SET district=?, population=? WHERE countryCode=? AND name=?;")) {
+                    preparedStatement.setString(1, city.getDistrict());
+                    preparedStatement.setInt(2, city.getPopulation());
+                    preparedStatement.setString(3, city.getCountryCode());
+                    preparedStatement.setString(4, city.getName());
+                    preparedStatement.executeUpdate();
+                }
+            }
+            else {
+                throw new UnsupportedOperationException("TODO: Obsługa INSERT");
+            }
+        }
+
+        return !exists;
     }
 }
