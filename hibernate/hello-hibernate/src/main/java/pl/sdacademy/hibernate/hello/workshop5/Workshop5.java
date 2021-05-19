@@ -1,7 +1,5 @@
 package pl.sdacademy.hibernate.hello.workshop5;
 
-import pl.sdacademy.hibernate.hello.common.City;
-
 import javax.persistence.*;
 import java.util.*;
 
