@@ -1,5 +1,8 @@
 package pl.sdacademy.hibernate.sakila.workshop7;
 
+import pl.sdacademy.hibernate.sakila.workhop6.Actor;
+import pl.sdacademy.hibernate.sakila.workhop6.Film;
+
 import java.util.List;
 import java.util.Scanner;
 

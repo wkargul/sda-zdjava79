@@ -1,5 +1,7 @@
 package pl.sdacademy.hibernate.sakila.workshop8;
 
+import pl.sdacademy.hibernate.sakila.workhop6.Staff;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
