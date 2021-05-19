@@ -15,9 +15,9 @@ import java.util.Scanner;
  * • Zmodyfikuj funkcję i zapytanie JPQL z poprzedniego zadania tak, by
  * wyszukiwać aktorów według opisów filmów w których grali
  * • Posortuj wyniki według:
- * • Nazwiska,
- * • Imienia,
- * • Tytułu filmu
+ *   • Nazwiska,
+ *   • Imienia,
+ *   • Tytułu filmu
  */
 public class Workshop7b {
     public static void main(String[] args) {
