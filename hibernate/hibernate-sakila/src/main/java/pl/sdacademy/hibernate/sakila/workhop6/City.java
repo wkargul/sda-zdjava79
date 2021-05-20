@@ -9,6 +9,7 @@ public class City {
 
     @Id
     @Column(name = "city_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cityId;
 
     @Column(name = "city")
@@ -38,8 +39,16 @@ public class City {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Country getCountry() {
         return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public List<Address> getAddresses() {
