@@ -3,6 +3,7 @@ package pl.sdacademy.hibernate.sakila.workshop16;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.Scanner;
 
 /**
@@ -29,7 +30,20 @@ public class Workshop16 {
         final EntityManager em = emf.createEntityManager();
 
         try {
-            throw new UnsupportedOperationException("TODO");
+            em.getTransaction().begin();
+
+            Query query = em.createQuery(
+                "update Country c set c.name = :countryName where c.countryId = :countryId"
+            );
+
+            query.setParameter("countryName", countryName);
+            query.setParameter("countryId", countryId);
+
+            int changedRows = query.executeUpdate();
+
+            em.getTransaction().commit();
+
+            return changedRows;
         }
         finally {
             emf.close();
