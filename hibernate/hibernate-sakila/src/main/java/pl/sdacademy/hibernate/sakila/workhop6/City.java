@@ -15,7 +15,7 @@ public class City {
     @Column(name = "city")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "country_id")
     private Country country;
 
