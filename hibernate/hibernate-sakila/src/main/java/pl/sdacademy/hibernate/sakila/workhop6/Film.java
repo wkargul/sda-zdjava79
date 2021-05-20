@@ -1,6 +1,10 @@
 package pl.sdacademy.hibernate.sakila.workhop6;
 
+import pl.sdacademy.hibernate.sakila.workshop9.Rating;
+import pl.sdacademy.hibernate.sakila.workshop9.RatingConverter;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -22,6 +26,12 @@ public class Film {
     @ManyToOne
     @JoinColumn(name = "original_language_id")
     private Language originalLanguage;
+
+    @Convert(converter = RatingConverter.class)
+    private Rating rating;
+
+    @Column(name = "last_update")
+    private LocalDateTime lastUpdate;
 
     @ManyToMany
     @JoinTable(name = "film_actor",
@@ -80,6 +90,18 @@ public class Film {
 
     public void setOriginalLanguage(Language originalLanguage) {
         this.originalLanguage = originalLanguage;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
     }
 
     public List<Actor> getActors() {
