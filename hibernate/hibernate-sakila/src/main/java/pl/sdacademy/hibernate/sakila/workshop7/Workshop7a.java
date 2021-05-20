@@ -45,7 +45,7 @@ public class Workshop7a {
         try {
             final TypedQuery<Film> filmsQuery = em.createQuery(
                     "SELECT DISTINCT f FROM Film f JOIN FETCH f.actors " +
-  //                  "JOIN FETCH f.language JOIN FETCH f.originalLanguage " +
+                    "JOIN FETCH f.language LEFT JOIN FETCH f.originalLanguage " +
                     "WHERE f.description LIKE concat('%', :descriptionPart, '%') ORDER BY f.title", Film.class);
             filmsQuery.setParameter("descriptionPart", descriptionPart);
             return filmsQuery.getResultList();
