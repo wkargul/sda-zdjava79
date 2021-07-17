@@ -1,0 +1,8 @@
+{{>homework/header}}
+<ul>
+    {{#products}}
+    <li><a href="/products/{{id}}">{{name}}</a></li>
+    {{/products}}
+</ul>
+<p><a href="/products/add">Dodaj produkt</a></p>
+{{>homework/footer}}
