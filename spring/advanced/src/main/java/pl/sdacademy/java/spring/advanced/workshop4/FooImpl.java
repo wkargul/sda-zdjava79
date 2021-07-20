@@ -1,8 +1,10 @@
 package pl.sdacademy.java.spring.advanced.workshop4;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile("prod")
 @Component
 public class FooImpl implements Foo {
     private final int x;
