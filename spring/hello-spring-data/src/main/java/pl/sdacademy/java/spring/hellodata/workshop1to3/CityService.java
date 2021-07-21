@@ -13,8 +13,13 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    public List<City> getCities() {
-        return cityRepository.findAll();
+    public List<City> getCities(String query) {
+        if (query != null) {
+            return cityRepository.findAllByNameContainingIgnoreCaseOrderByName(query);
+        }
+        else {
+            return cityRepository.findAllByOrderByName();
+        }
     }
 
     public Optional<City> getCity(long id) {

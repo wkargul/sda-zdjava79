@@ -17,8 +17,8 @@ public class CityController {
     }
 
     @GetMapping
-    public List<City> getCities() {
-        return cityService.getCities();
+    public List<City> getCities(@RequestParam(required = false) String query) {
+        return cityService.getCities(query);
     }
 
     @GetMapping("/{id}")
