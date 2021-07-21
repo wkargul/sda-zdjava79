@@ -1,14 +1,14 @@
 package pl.sdacademy.java.spring.hellodata.workshop1to3;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "city")
+@SequenceGenerator(name = "CitySeq", sequenceName = "city_seq")
 public class City {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CitySeq")
     private Long id;
 
     private String name;
