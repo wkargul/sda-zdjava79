@@ -15,7 +15,8 @@ public class CityService {
 
     public List<City> getCities(String query) {
         if (query != null) {
-            return cityRepository.findAllByNameContainingIgnoreCaseOrderByName(query);
+            //return cityRepository.findAllByNameContainingIgnoreCaseOrderByName(query);
+            return cityRepository.findByCustomQuery(query);
         }
         else {
             return cityRepository.findAllByOrderByName();

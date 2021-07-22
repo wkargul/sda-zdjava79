@@ -16,7 +16,8 @@ public class CityService {
 
     public Page<City> getCities(String query, Pageable pageable) {
         if (query != null) {
-            return cityRepository.findAllByCountryNameContainingIgnoreCase(query, pageable);
+            //return cityRepository.findAllByCountryNameContainingIgnoreCase(query, pageable);
+            return cityRepository.findByWhatever(query, pageable);
         }
         else {
             return cityRepository.findAll(pageable);
