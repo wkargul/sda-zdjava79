@@ -6,8 +6,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WelcomeController {
 
+    private final Counter counter;
+
+    public WelcomeController(Counter counter) {
+        this.counter = counter;
+    }
+
     @GetMapping("/")
     public String helloSecurity() {
         return "Hello Spring Security!";
+    }
+
+    @GetMapping("/count")
+    public String countMessage() {
+        return "Licznik: " + counter.next();
     }
 }
