@@ -1,0 +1,23 @@
+<html lang="pl">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Workshop 4: ładowanie danych</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function loadData() {
+            $.getJSON("http://localhost:8080/users", fillDocument);
+        }
+
+        function fillDocument(data) {
+            let lis = [];
+            data.forEach(user => lis.push("<li>" + user.firstName + " " + user.lastName + "</li>"))
+            $("<ul/>", {html: lis.join("")}).appendTo("body");
+        }
+
+        $(loadData)
+    </script>
+</head>
+<body>
+</body>
+</html>
