@@ -19,6 +19,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Optional<User> getUser(String username) {
+        return userRepository.findById(username);
+    }
+
     @Transactional
     public Optional<User> addUser(User user) {
         if (userRepository.existsById(user.getUsername())) {
