@@ -13,7 +13,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/users").hasAnyRole("READER", "ADMIN")
+                //.antMatchers(HttpMethod.GET, "/users").hasAnyRole("READER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/users").hasAuthority("READ_USERS")
                 .antMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
                 //.antMatchers(HttpMethod.GET, "/users").hasAnyAuthority("ROLE_READER", "ROLE_ADMIN")
                 .anyRequest().denyAll();
