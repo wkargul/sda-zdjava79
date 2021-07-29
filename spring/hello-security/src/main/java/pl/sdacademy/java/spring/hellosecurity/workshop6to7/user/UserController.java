@@ -1,6 +1,7 @@
 package pl.sdacademy.java.spring.hellosecurity.workshop6to7.user;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,6 +28,7 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
+    //@Secured("ROLE_ADMIN") //alternatywa dla programowej konfiguracji
     @PostMapping
     public UserDto addUser(@RequestBody UserDto user) {
         return userService
